@@ -11,8 +11,8 @@ def check_advice():
     headers = {'Cache-Control': 'no-cache'}
     response = requests.request("GET", url, data=payload, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
-    price = soup.find("div", {"class": "inline-price"})
-    if "สินค้าหมดชั่วคราว" != price.text.strip():
+    price = soup.find("div", {"class": "btn"})
+    if "Arriving (1-3 days)" != price.text.strip():
         notify('Ryzen9 3900x เข้าแล้ว', 'กดเลยที่ ' + url)
     else:
         print("Not found in ADVICE")
